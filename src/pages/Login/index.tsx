@@ -138,9 +138,9 @@ function Main() {
               <div className="mt-2.5 text-slate-600">
                 Don't have an account?{" "}
                 <Link to="/register">
-                <a className="font-medium text-primary" href="">
+                <p className="font-medium text-primary">
                   Sign Up
-                </a>
+                </p>
                 </Link>
               </div>
               <Alert
@@ -203,7 +203,7 @@ function Main() {
                     </label>
                   </div>
                   <Link to="/forgot-password">
-                  <a href="">Forgot Password?</a>
+                  <p>Forgot Password?</p>
                   </Link>
                 </div>
                 <div className="mt-5 text-center xl:mt-8 xl:text-left">

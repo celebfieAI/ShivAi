@@ -121,9 +121,9 @@ function Main() {
               <div className="mt-2.5 text-slate-600">
                 Already have an account?{" "}
                 <Link to="/login">
-                <a className="font-medium text-primary" href="">
+                <p className="font-medium text-primary">
                   Sign In
-                </a>
+                </p>
                 </Link>
               </div>
               <div className="mt-6">

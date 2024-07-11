@@ -79,9 +79,9 @@ function Main() {
               <div className="mt-2.5 text-slate-600">
                 Don't have an account?{" "}
                 <Link to="/register">
-                <a className="font-medium text-primary" href="">
+                <p className="font-medium text-primary">
                   Sign Up
-                </a>
+                </p>
                 </Link>
               </div>
               <Alert
@@ -134,7 +134,7 @@ function Main() {
 
                 <div className="flex mt-4 ml-2 text-xs text-slate-500 sm:text-sm underline">
                   <Link to="/login">
-                <a href=""> Wait I Remember password</a>
+                <p> Wait I Remember password</p>
                 </Link>
 
                 </div>
