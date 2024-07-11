@@ -25,9 +25,12 @@ import { signOut } from "firebase/auth";
 import { logoutUser } from "../../stores/userSlice";
 import { auth } from "../../firebase";
 import FinalLogo from "../../assets/images/final-logo-white.png"
+import MainLogo from "../../assets/images/final-logo-small.png"
+// import { RootState } from "../../stores/store";
 
 function Main() {
-  const dispatch = useAppDispatch();
+  // const user = useSelector((state: RootState) => state.user.user);
+  const dispatch = useDispatch();
  
   const compactMenu = useAppSelector(selectCompactMenu);
   const setCompactMenu = (val: boolean) => {
@@ -96,8 +99,7 @@ function Main() {
   const handelLogout = () => {
     dispatch(logoutUser());
     signOut(auth);
-    // localStorage.removeItem("machaaoUser");
-    localStorage.clear();
+    
  
   };
 
@@ -160,18 +162,14 @@ function Main() {
               href=""
               className="flex items-center transition-[margin] duration-300 group-[.side-menu--collapsed]:xl:ml-2 group-[.side-menu--collapsed.side-menu--on-hover]:xl:ml-0"
             >
-              <div className="flex items-center justify-center w-[34px] rounded-lg h-[34px] bg-gradient-to-b from-theme-1 to-theme-2/80 transition-transform ease-in-out group-[.side-menu--collapsed.side-menu--on-hover]:xl:-rotate-0">
-                {/* <div className="w-[16px] h-[16px] relative -rotate-45 [&_div]:bg-white">
-                  <div className="absolute w-[21%] left-0 inset-y-0 my-auto rounded-full opacity-50 h-[75%]"></div>
-                  <div className="absolute w-[21%] inset-0 m-auto h-[120%] rounded-full"></div>
-                  <div className="absolute w-[21%] right-0 inset-y-0 my-auto rounded-full opacity-50 h-[75%]"></div>
-                </div> */}
+              <div className="absolute flex items-center justify-center w-[34px] rounded-lg h-[34px] bg-gradient-to-b from-theme-1 to-theme-2/80 transition-transform ease-in-out group-[.side-menu--collapsed.side-menu--on-hover]:xl:hidden">
+               
                 
-              <img src={FinalLogo} alt="" />
+              <img src={FinalLogo} alt=""/>
               </div>
               
-              <div className="ml-3.5 group-[.side-menu--collapsed.side-menu--on-hover]:xl:opacity-100 group-[.side-menu--collapsed]:xl:opacity-0 transition-opacity font-medium">
-                ShivAi
+              <div className="group-[.side-menu--collapsed.side-menu--on-hover]:xl:opacity-100 group-[.side-menu--collapsed]:xl:opacity-0 transition-opacity font-medium">
+              <img src={MainLogo} alt="main logo" />
               </div>
             </a>
             <a

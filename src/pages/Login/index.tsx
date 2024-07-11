@@ -4,12 +4,14 @@ import users from "@/fakers/users";
 import Button from "@/components/Base/Button";
 import Alert from "@/components/Base/Alert";
 import Lucide from "@/components/Base/Lucide";
+import { useDispatch } from 'react-redux';
 import clsx from "clsx";
 import _ from "lodash";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { loginUser, setLoading } from '../../stores/userSlice';
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 import { MouseEvent, SyntheticEvent, useState } from "react";
@@ -20,95 +22,161 @@ import FinalLogo from "../../assets/images/final-logo.png"
 
 function Main() {
 
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+//   const navigate = useNavigate();
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
 
-  const handleLogin = (e: SyntheticEvent) => {
+//   const handleLogin = (e: SyntheticEvent) => {
 
-    e.preventDefault();
-    // setError(null);
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        const user = auth.currentUser;
+//     e.preventDefault();
+//     // setError(null);
+//     signInWithEmailAndPassword(auth, email, password)
+//       .then(() => {
+//         const user = auth.currentUser;
 
-        if (user) {
+//         if (user) {
          
 
-          navigate("/");
-        }
-      })
+//           navigate("/");
+//         }
+//       })
      
-.catch((error) => {
-    if (error.code === "auth/invalid-credential") {
-        Toastify({
-            text: "Invalid credentials. Please double-check your email and password.",
-            duration: 3000,
-            close: true,
-            gravity: "top", // `top` or `bottom`
-            position: "right", // `left`, `center` or `right`
-            backgroundColor: "#FF6F61",
-        }).showToast();
-    } else if (error.code === "auth/too-many-requests") {
-        Toastify({
-            text: "Too many requests. Try again later.",
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "#FF6F61",
-        }).showToast();
-    } else if (error.code === "auth/network-request-failed") {
-        Toastify({
-            text: "Network error. Try again later.",
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "#FF6F61",
-        }).showToast();
-    } else if (error.code === "auth/user-disabled") {
-        Toastify({
-            text: "User disabled. Please contact support.",
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "#FF6F61",
-        }).showToast();
-    } else if (error.code === "auth/weak-password") {
-        Toastify({
-            text: "Password should be at least 6 characters.",
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "#FF6F61",
-        }).showToast();
-    } else if (email === "" || password === "") {
-        Toastify({
-            text: "Please fill in all fields.",
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "#FF6F61",
-        }).showToast();
-    } else {
-        Toastify({
-            text: "Login failed: " + error.message,
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "#FF6F61",
-        }).showToast();
-    }
+// .catch((error) => {
+//     if (error.code === "auth/invalid-credential") {
+//         Toastify({
+//             text: "Invalid credentials. Please double-check your email and password.",
+//             duration: 3000,
+//             close: true,
+//             gravity: "top", // `top` or `bottom`
+//             position: "right", // `left`, `center` or `right`
+//             backgroundColor: "#FF6F61",
+//         }).showToast();
+//     } else if (error.code === "auth/too-many-requests") {
+//         Toastify({
+//             text: "Too many requests. Try again later.",
+//             duration: 3000,
+//             close: true,
+//             gravity: "top",
+//             position: "right",
+//             backgroundColor: "#FF6F61",
+//         }).showToast();
+//     } else if (error.code === "auth/network-request-failed") {
+//         Toastify({
+//             text: "Network error. Try again later.",
+//             duration: 3000,
+//             close: true,
+//             gravity: "top",
+//             position: "right",
+//             backgroundColor: "#FF6F61",
+//         }).showToast();
+//     } else if (error.code === "auth/user-disabled") {
+//         Toastify({
+//             text: "User disabled. Please contact support.",
+//             duration: 3000,
+//             close: true,
+//             gravity: "top",
+//             position: "right",
+//             backgroundColor: "#FF6F61",
+//         }).showToast();
+//     } else if (error.code === "auth/weak-password") {
+//         Toastify({
+//             text: "Password should be at least 6 characters.",
+//             duration: 3000,
+//             close: true,
+//             gravity: "top",
+//             position: "right",
+//             backgroundColor: "#FF6F61",
+//         }).showToast();
+//     } else if (email === "" || password === "") {
+//         Toastify({
+//             text: "Please fill in all fields.",
+//             duration: 3000,
+//             close: true,
+//             gravity: "top",
+//             position: "right",
+//             backgroundColor: "#FF6F61",
+//         }).showToast();
+//     } else {
+//         Toastify({
+//             text: "Login failed: " + error.message,
+//             duration: 3000,
+//             close: true,
+//             gravity: "top",
+//             position: "right",
+//             backgroundColor: "#FF6F61",
+//         }).showToast();
+//     }
 
-    console.error("Login failed:", error.message);
-});
+//     console.error("Login failed:", error.message);
+// });
 
-  };
+//   };
+
+
+const navigate = useNavigate();
+const dispatch = useDispatch();
+const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+
+const handleLogin = (e: SyntheticEvent) => {
+  e.preventDefault();
+  dispatch(setLoading(true));
+  
+  signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      const user = auth.currentUser;
+      if (user) {
+        dispatch(
+          loginUser({
+            uid: user.uid,
+            username: user.displayName,
+            email: user.email,
+          })
+        );
+        dispatch(setLoading(false));
+        navigate('/');
+      }
+    })
+    .catch((error) => {
+      dispatch(setLoading(false));
+      let errorMessage = '';
+      
+      switch (error.code) {
+        case 'auth/invalid-credential':
+          errorMessage = 'Invalid credentials. Please double-check your email and password.';
+          break;
+        case 'auth/too-many-requests':
+          errorMessage = 'Too many requests. Try again later.';
+          break;
+        case 'auth/network-request-failed':
+          errorMessage = 'Network error. Try again later.';
+          break;
+        case 'auth/user-disabled':
+          errorMessage = 'User disabled. Please contact support.';
+          break;
+        case 'auth/weak-password':
+          errorMessage = 'Password should be at least 6 characters.';
+          break;
+        default:
+          if (email === '' || password === '') {
+            errorMessage = 'Please fill in all fields.';
+          } else {
+            errorMessage = 'Login failed: ' + error.message;
+          }
+      }
+
+      Toastify({
+        text: errorMessage,
+        duration: 3000,
+        close: true,
+        gravity: 'top',
+        position: 'right',
+        backgroundColor: '#FF6F61',
+      }).showToast();
+
+      console.error('Login failed:', error.message);
+    });
+};
 
 
 
@@ -216,7 +284,7 @@ function Main() {
                     Sign In
                   </Button>
 
-                  <Link to="/register">
+                  {/* <Link to="/register">
                   <Button
                     variant="outline-secondary"
                     rounded
@@ -225,7 +293,7 @@ function Main() {
                   >
                     Sign Up
                   </Button>
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>

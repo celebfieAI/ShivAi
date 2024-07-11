@@ -16,6 +16,7 @@ import 'toastify-js/src/toastify.css';
 import { Link, useNavigate } from "react-router-dom";
 import { MouseEvent, SyntheticEvent, useState } from "react";
 import FinalLogo from "../../assets/images/final-logo.png"
+import zxcvbn from 'zxcvbn';
 
 
 function Main() {
@@ -23,7 +24,7 @@ function Main() {
 
   const [email, setEmail] = useState("");
  
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
 
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -94,6 +95,42 @@ function Main() {
       setPasswordsMatch(false);
     }
   };
+
+  const [password, setPassword] = useState('');
+  const [strength, setStrength] = useState(0);
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+    setStrength(zxcvbn(newPassword).score);
+  };
+
+  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (password !== confirmPassword) {
+      Toastify({
+        text: "Passwords do not match!",
+        duration: 3000,
+        gravity: "top",
+        position: "center",
+        backgroundColor: "#ff6b6b",
+        stopOnFocus: true,
+      }).showToast();
+    } else {
+      // Handle successful registration
+      Toastify({
+        text: "Registration successful!",
+        duration: 3000,
+        gravity: "top",
+        position: "center",
+        backgroundColor: "#4caf50",
+        stopOnFocus: true,
+      }).showToast();
+    }
+  };
   
   return (
     <>
@@ -148,17 +185,31 @@ function Main() {
                 />
                 <FormLabel className="mt-5">Password*</FormLabel>
                 <FormInput
-                 onChange={(e) => setPassword(e.target.value)}
+                //  onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  handlePasswordChange(e);
+                  setPassword(e.target.value);
+                }}
                   type="password"
                   className="block px-4 py-3.5 rounded-[0.6rem] border-slate-300/80"
                   placeholder="************"
                 />
-                <div className="grid w-full h-1.5 grid-cols-12 gap-4 mt-3.5">
+                {/* <div className="grid w-full h-1.5 grid-cols-12 gap-4 mt-3.5">
                   <div className="h-full col-span-3 border rounded active bg-slate-400/30 border-slate-400/20 [&.active]:bg-theme-1/30 [&.active]:border-theme-1/20"></div>
                   <div className="h-full col-span-3 border rounded active bg-slate-400/30 border-slate-400/20 [&.active]:bg-theme-1/30 [&.active]:border-theme-1/20"></div>
                   <div className="h-full col-span-3 border rounded active bg-slate-400/30 border-slate-400/20 [&.active]:bg-theme-1/30 [&.active]:border-theme-1/20"></div>
                   <div className="h-full col-span-3 border rounded bg-slate-400/30 border-slate-400/20 [&.active]:bg-theme-1/30 [&.active]:border-theme-1/20"></div>
-                </div>
+                </div> */}
+                 <div className="grid w-full h-1.5 grid-cols-12 gap-4 mt-3.5">
+        {Array.from({ length: 4 }).map((_, index) => (
+          <div
+            key={index}
+            className={`h-full col-span-3 border rounded ${
+              index < strength ? 'bg-theme-1/30 border-theme-1/20' : 'bg-slate-400/30 border-slate-400/20'
+            }`}
+          ></div>
+        ))}
+      </div>
                 <a
                   href=""
                   className="block mt-3 text-xs text-slate-500/80 sm:text-sm"
@@ -167,7 +218,7 @@ function Main() {
                 </a>
                 <FormLabel className="mt-5">Password Confirmation*</FormLabel>
                 <FormInput
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  onChange={(e) => { handleConfirmPasswordChange(e); setConfirmPassword(e.target.value);}}
                   type="password"
                   className="block px-4 py-3.5 rounded-[0.6rem] border-slate-300/80"
                   placeholder="************"
@@ -182,7 +233,7 @@ function Main() {
                     className="cursor-pointer select-none"
                     htmlFor="remember-me"
                   >
-                    I agree to the Envato
+                    I agree to the ShivAi
                   </label>
                   <a className="ml-1 text-primary dark:text-slate-200" href="">
                     Privacy Policy
@@ -190,7 +241,7 @@ function Main() {
                   .
                 </div>
                 <div className="mt-5 text-center xl:mt-8 xl:text-left">
-                <Link to="/login">
+                {/* <Link to="/login">
                   <Button
                     variant="primary"
                     rounded
@@ -198,12 +249,16 @@ function Main() {
                   >
                     Sign In
                   </Button>
-                  </Link>
+                  </Link> */}
                   <Button
-                    variant="outline-secondary"
+                    variant="primary"
                     rounded
-                    className="bg-white/70 w-full py-3.5 mt-3"
-                    onClick={(e: MouseEvent<HTMLButtonElement>) => handleSignUp(e)}
+                    className="bg-gradient-to-r from-theme-1/70 to-theme-2/70 w-full py-3.5 xl:mr-3"
+                    // onClick={(e: MouseEvent<HTMLButtonElement>) => handleSignUp(e)}
+                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                      handleSubmit();
+                      handleSignUp(e);
+                    }}
                   >
                     Sign Up
                   </Button>

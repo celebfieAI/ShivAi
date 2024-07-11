@@ -59,43 +59,19 @@ import Chart from "../pages/Chart";
 import Slider from "../pages/Slider";
 import ImageZoom from "../pages/ImageZoom";
 import LandingPage from "../pages/LandingPage";
-// import { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { auth } from "../firebase";
-// import { loginUser, setLoading } from "../stores/userSlice";
+import Agents from "../pages/Agents";
+import Resources from "../pages/Resources";
+import CallingNumbers from "../pages/CallingNumbers";
+import Kits from "../pages/Kits";
+import Crew from "../pages/Crew";
+import AudioCollection from "../pages/AudioCollection";
+import CallRecords from "../pages/CallRecords";
 
-// import { RootState } from '../stores/store'; // Adjust the path accordingly
 
 
 import Layout from "../themes";
 
 function Router() {
-
-//   const dispatch = useDispatch();
-
-//   useEffect(() => {
-//     auth.onAuthStateChanged((authUser) => {
-//       if (authUser) {
-//         dispatch(
-//           loginUser({
-//             uid: authUser.uid,
-//             username: authUser.displayName,
-//             email: authUser.email,
-//           })
-//         );
-//         dispatch(setLoading(false));
-//       } else {
-//         dispatch(setLoading(false));
-//         console.log("User is not logged in.");
-//       }
-//     });
-//   }, []);
-
- 
-
-// const user = useSelector((state: RootState) => state.user.user);
-// const isLoading = useSelector((state: RootState) => state.user.isLoading);
-
 
 
   const routes = [
@@ -151,6 +127,34 @@ function Router() {
         {
           path: "dashboard-overview-8",
           element: <DashboardOverview8 />,
+        },
+        {
+          path: "agents",
+          element: <Agents />,
+          },
+        {
+          path: "resources",
+          element: <Resources />,
+        },
+        {
+          path: "calling-numbers",
+          element: <CallingNumbers />,
+        },
+        {
+          path: "kits",
+          element: <Kits />,
+        },
+        {
+          path: "crew",
+          element: <Crew />,
+        },
+        {
+          path: "audio-collection",
+          element: <AudioCollection />,
+        },
+        {
+          path: "call-records",
+          element: <CallRecords />,
         },
         {
           path: "users",
