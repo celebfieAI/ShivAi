@@ -23,41 +23,41 @@ const initialState: SideMenuState = {
       pathname: "/",
       title: "E-Commerce",
     },
-    {
-      icon: "ActivitySquare",
-      pathname: "/dashboard-overview-2",
-      title: "CRM",
-    },
-    {
-      icon: "Album",
-      pathname: "/dashboard-overview-3",
-      title: "Hospital",
-    },
-    {
-      icon: "BookMarked",
-      pathname: "/dashboard-overview-4",
-      title: "Factory",
-    },
-    {
-      icon: "HardDrive",
-      pathname: "/dashboard-overview-5",
-      title: "Banking",
-    },
-    {
-      icon: "MousePointerSquare",
-      pathname: "/dashboard-overview-6",
-      title: "Cafe",
-    },
-    {
-      icon: "ShieldHalf",
-      pathname: "/dashboard-overview-7",
-      title: "Crypto",
-    },
-    {
-      icon: "Building",
-      pathname: "/dashboard-overview-8",
-      title: "Hotel",
-    },
+    // {
+    //   icon: "ActivitySquare",
+    //   pathname: "/dashboard-overview-2",
+    //   title: "CRM",
+    // },
+    // {
+    //   icon: "Album",
+    //   pathname: "/dashboard-overview-3",
+    //   title: "Hospital",
+    // },
+    // {
+    //   icon: "BookMarked",
+    //   pathname: "/dashboard-overview-4",
+    //   title: "Factory",
+    // },
+    // {
+    //   icon: "HardDrive",
+    //   pathname: "/dashboard-overview-5",
+    //   title: "Banking",
+    // },
+    // {
+    //   icon: "MousePointerSquare",
+    //   pathname: "/dashboard-overview-6",
+    //   title: "Cafe",
+    // },
+    // {
+    //   icon: "ShieldHalf",
+    //   pathname: "/dashboard-overview-7",
+    //   title: "Crypto",
+    // },
+    // {
+    //   icon: "Building",
+    //   pathname: "/dashboard-overview-8",
+    //   title: "Hotel",
+    // },
     // "APPS",
     // {
     //   icon: "GanttChartSquare",
