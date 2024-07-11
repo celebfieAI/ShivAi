@@ -531,10 +531,10 @@ function Main() {
                 notificationsPanel={notificationsPanel}
                 setNotificationsPanel={setNotificationsPanel}
               />
-              <SwitchAccount
+              {/* <SwitchAccount
                 switchAccount={switchAccount}
                 setSwitchAccount={setSwitchAccount}
-              />
+              /> */}
               {/* END: Notification & User Menu */}
             </div>
           </div>

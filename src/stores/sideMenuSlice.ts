@@ -21,8 +21,50 @@ const initialState: SideMenuState = {
     {
       icon: "GaugeCircle",
       pathname: "/",
-      title: "E-Commerce",
+      title: "Synopsis",
     },
+    {
+        icon: "Table2",
+        pathname: "/",
+        title: "Sivai Matrix",
+        subMenu: [
+          {
+            icon: "Users",
+            pathname: "/",
+            title: "Agents",
+          },
+          {
+            icon: "Sandwich",
+            pathname: "/",
+            title: "Resources",
+          },
+          {
+            icon: "TabletSmartphone",
+            pathname: "/",
+            title: "Calling Numbers",
+          },
+          {
+            icon: "LayoutPanelLeft",
+            pathname: "/",
+            title: "Kits",
+          },
+          {
+            icon: "LayoutPanelLeft",
+            pathname: "/",
+            title: "Crew",
+          },
+        ],
+      },
+      {
+        icon: "GaugeCircle",
+        pathname: "/",
+        title: "Audio Collection",
+      },
+      {
+        icon: "GaugeCircle",
+        pathname: "/",
+        title: "Call Records",
+      },
     // {
     //   icon: "ActivitySquare",
     //   pathname: "/dashboard-overview-2",
