@@ -116,8 +116,8 @@ function Main() {
         className={clsx([
           "xl:ml-0 shadow-xl transition-[margin,padding] duration-300 xl:shadow-none fixed top-0 left-0 z-50 side-menu group inset-y-0 xl:py-3.5 xl:pl-3.5",
           "after:content-[''] after:fixed after:inset-0 after:bg-black/80 after:xl:hidden",
-          { "side-menu--collapsed": compactMenu },
-          { "side-menu--on-hover": compactMenuOnHover },
+          // { "side-menu--collapsed": compactMenu },
+          // { "side-menu--on-hover": compactMenuOnHover },
           { "ml-0 after:block": activeMobileMenu },
           { "-ml-[275px] after:hidden": !activeMobileMenu },
         ])}
@@ -142,7 +142,7 @@ function Main() {
         </div>
         <div
           className={clsx([
-            "h-full box bg-white/[0.95] rounded-none xl:rounded-xl z-20 relative w-[275px] duration-300 transition-[width] group-[.side-menu--collapsed]:xl:w-[91px] group-[.side-menu--collapsed.side-menu--on-hover]:xl:shadow-[6px_0_12px_-4px_#0000000f] group-[.side-menu--collapsed.side-menu--on-hover]:xl:w-[275px] overflow-hidden flex flex-col",
+            "h-full box bg-white rounded-none xl:rounded-xl z-20 relative w-[275px] duration-300 transition-[width] group-[.side-menu--collapsed]:xl:w-[91px] group-[.side-menu--collapsed.side-menu--on-hover]:xl:shadow-[6px_0_12px_-4px_#0000000f] group-[.side-menu--collapsed.side-menu--on-hover]:xl:w-[275px] overflow-hidden flex flex-col",
           ])}
           onMouseOver={(event) => {
             event.preventDefault();
@@ -162,11 +162,11 @@ function Main() {
               href=""
               className="flex items-center transition-[margin] duration-300 group-[.side-menu--collapsed]:xl:ml-2 group-[.side-menu--collapsed.side-menu--on-hover]:xl:ml-0"
             >
-              <div className="absolute flex items-center justify-center w-[34px] rounded-lg h-[34px] bg-gradient-to-b from-theme-1 to-theme-2/80 transition-transform ease-in-out group-[.side-menu--collapsed.side-menu--on-hover]:xl:hidden">
+              {/* <div className="absolute flex items-center justify-center w-[34px] rounded-lg h-[34px] bg-gradient-to-b from-theme-1 to-theme-2/80 transition-transform ease-in-out group-[.side-menu--collapsed.side-menu--on-hover]:xl:hidden">
                
                 
               <img src={FinalLogo} alt=""/>
-              </div>
+              </div> */}
               
               <div className="group-[.side-menu--collapsed.side-menu--on-hover]:xl:opacity-100 group-[.side-menu--collapsed]:xl:opacity-0 transition-opacity font-medium">
               <img src={MainLogo} alt="main logo" />
@@ -542,7 +542,8 @@ function Main() {
         className={clsx([
           "transition-[margin,width] duration-100 xl:pl-3.5 pt-[54px] pb-16 relative z-10 group mode",
           { "xl:ml-[275px]": !compactMenu },
-          { "xl:ml-[91px]": compactMenu },
+          // { "xl:ml-[91px]": compactMenu },
+          { "xl:ml-[275px]": compactMenu },
           { "mode--light": !topBarActive },
         ])}
       >

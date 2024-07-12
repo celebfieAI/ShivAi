@@ -9,7 +9,7 @@ function Main() {
 
     return (
       <>
-        <div className="p-5 box box--stacked w-2/5">
+        <div className="p-5 box box--stacked md:w-2/5 w-full ">
               <div className="relative">
                 <FormInput
                   type="text"
