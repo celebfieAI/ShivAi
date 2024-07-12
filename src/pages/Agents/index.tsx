@@ -6,8 +6,26 @@ import Tippy from "@/components/Base/Tippy";
 import users from "@/fakers/users";
 import Button from "@/components/Base/Button";
 import Table from "@/components/Base/Table";
+import Alert from "@/components/Base/Alert";
 import clsx from "clsx";
 import _ from "lodash";
+
+
+
+import {
+  PreviewComponent,
+  Preview,
+  Source,
+  Highlight,
+} from "@/components/Base/PreviewComponent";
+import {
+  FormLabel,
+  FormSwitch,
+ 
+} from "@/components/Base/Form";
+
+import {  Slideover } from "@/components/Base/Headless";
+
 
 
 
@@ -33,6 +51,8 @@ function Main() {
   const { search } = useLocation();
   const queryParams = new URLSearchParams(search);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [headerFooterSlideoverPreview, setHeaderFooterSlideoverPreview] =
+    useState(false);
 
   useEffect(() => {
     if (queryParams.get("page") == "events") {
@@ -69,10 +89,185 @@ function Main() {
 <Button
       variant="primary"
       className="group-[.mode--light]:!bg-white/[0.12] group-[.mode--light]:!text-slate-200 group-[.mode--light]:!border-transparent mb-4"
+      onClick={(event: React.MouseEvent) => {
+        event.preventDefault();
+        setHeaderFooterSlideoverPreview(true);
+      }}
     >
       <Lucide icon="PenLine" className="stroke-[1.3] w-4 h-4 mr-2" />{" "}
       Add New Agent
     </Button>
+
+    <Slideover
+                              staticBackdrop
+                              open={headerFooterSlideoverPreview}
+                              onClose={() => {
+                                setHeaderFooterSlideoverPreview(false);
+                              }}
+                            >
+                              {/* BEGIN: Slide Over Header */}
+                              <Slideover.Panel>
+                                <a
+                                  onClick={(event: React.MouseEvent) => {
+                                    event.preventDefault();
+                                    setHeaderFooterSlideoverPreview(false);
+                                  }}
+                                  className="absolute top-0 left-0 right-auto mt-4 -ml-12"
+                                  href="#"
+                                >
+                                  <Lucide
+                                    icon="X"
+                                    className="w-8 h-8 text-slate-400"
+                                  />
+                                </a>
+                                <Slideover.Title>
+                                  <h2 className="mr-auto text-base font-medium">
+                                    Create your Agent
+                                  </h2>
+                             
+                                  
+                                </Slideover.Title>
+                                {/* END: Slide Over Header */}
+                                {/* BEGIN: Slide Over Body */}
+                                <Slideover.Description>
+                                  
+                                  <div className="mt-3 mb-8">
+                                    <FormLabel htmlFor="modal-form-3">
+                                      Agent Name 
+                                    </FormLabel>
+                                    <FormInput
+                                      id="modal-form-3"
+                                      type="text"
+                                      placeholder="New Agent"
+                                    />
+                                  </div>
+
+                                  <Alert variant="primary">
+                                 <div className="flex gap-6 cursor-pointer">
+                                 <div className="col-span-6 sm:col-span-3 lg:col-span-2 mt-1">
+                                <Lucide
+                                  icon="PlusCircle"
+                                  className="block mx-auto"
+                                />
+                              </div>
+                               <div>
+                               <div className="flex items-center">
+                              
+                              <div className="text-lg font-medium">
+                                Blank Template
+                              </div>
+                             
+                            </div>
+                            <div className="mt-1">
+                              Lorem Ipsum is simply dummy text of the
+                              printing and typesetting industry. 
+                            </div>
+                               </div>
+                                 </div>
+                              </Alert>
+
+                              <div className="border rounded-[0.6rem] dark:border-darkmode-400 relative mt-7 mb-4 border-slate-200/80">
+                        <div className="absolute left-0 px-3 ml-4 -mt-2 text-xs uppercase bg-white text-slate-500">
+                          <div className="-mt-px">Quickstart</div>
+                        </div>
+
+                    <div className="pt-8 pb-8 pr-2 pl-2 gap-4 flex flex-col">
+
+                    <Alert variant="secondary">
+                                 <div className="flex gap-6 cursor-pointer">
+                                 <div className="col-span-6 sm:col-span-3 lg:col-span-2 mt-1">
+                                <Lucide
+                                  icon="PlusCircle"
+                                  className="block mx-auto"
+                                />
+                              </div>
+                               <div>
+                               <div className="flex items-center">
+                              
+                              <div className="text-lg font-medium">
+                                Blank Template
+                              </div>
+                             
+                            </div>
+                            <div className="mt-1">
+                              Lorem Ipsum is simply dummy text of the
+                              printing and typesetting industry. 
+                            </div>
+                               </div>
+                                 </div>
+                              </Alert>
+
+                              <Alert variant="secondary">
+                                 <div className="flex gap-6 cursor-pointer">
+                                 <div className="col-span-6 sm:col-span-3 lg:col-span-2 mt-1">
+                                <Lucide
+                                  icon="PlusCircle"
+                                  className="block mx-auto"
+                                />
+                              </div>
+                               <div>
+                               <div className="flex items-center">
+                              
+                              <div className="text-lg font-medium">
+                                Blank Template
+                              </div>
+                             
+                            </div>
+                            <div className="mt-1">
+                              Lorem Ipsum is simply dummy text of the
+                              printing and typesetting industry. 
+                            </div>
+                               </div>
+                                 </div>
+                              </Alert>
+
+                              <Alert variant="secondary">
+                                 <div className="flex gap-6 cursor-pointer">
+                                 <div className="col-span-6 sm:col-span-3 lg:col-span-2 mt-1">
+                                <Lucide
+                                  icon="PlusCircle"
+                                  className="block mx-auto"
+                                />
+                              </div>
+                               <div>
+                               <div className="flex items-center">
+                              
+                              <div className="text-lg font-medium">
+                                Blank Template
+                              </div>
+                             
+                            </div>
+                            <div className="mt-1">
+                              Lorem Ipsum is simply dummy text of the
+                              printing and typesetting industry. 
+                            </div>
+                               </div>
+                                 </div>
+                              </Alert>
+
+                    </div>
+                       
+                      </div>
+                                  
+                                
+                                
+                             
+                                </Slideover.Description>
+                                {/* END: Slide Over Body */}
+                                {/* BEGIN: Slide Over Footer */}
+                                <Slideover.Footer>
+                             
+                                  <Button
+                                    variant="primary"
+                                    type="button"
+                                    className="w-full"
+                                  >
+                                    Create Agent
+                                  </Button>
+                                </Slideover.Footer>
+                              </Slideover.Panel>
+                              {/* END: Slide Over Footer */}
+                            </Slideover>
 
   <div className="flex flex-col box box--stacked">
     {/* <div className="flex flex-col p-5 sm:items-center sm:flex-row gap-y-2">

@@ -81,7 +81,7 @@ Slideover.Panel = ({
         leave="ease-in-out duration-[400ms]"
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
-        className="fixed inset-0 bg-gradient-to-b from-theme-1/50 via-theme-2/50 to-black/50 backdrop-blur-sm"
+        className="fixed inset-0 bg-gradient-to-b from-theme-1/50 via-theme-2/50 to-black/50 backdrop-blur-sm bg"
         aria-hidden="true"
       />
       <Transition.Child
@@ -97,7 +97,7 @@ Slideover.Panel = ({
         <HeadlessDialog.Panel
           as={as}
           className={twMerge([
-            "w-[90%] ml-auto h-screen flex flex-col bg-white relative shadow-md transition-transform dark:bg-darkmode-600",
+            "w-[90%] ml-auto h-screen flex flex-col bg-white relative shadow-md transition-transform dark:bg-darkmode-600 rounded-l-2xl",
             slideover.size == "md" && "sm:w-[460px]",
             slideover.size == "sm" && "sm:w-[300px]",
             slideover.size == "lg" && "sm:w-[600px]",
