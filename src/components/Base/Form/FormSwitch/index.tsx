@@ -24,7 +24,7 @@ FormSwitch.Input = (props: InputProps) => {
 
         // On checked
         "checked:bg-primary checked:border-primary checked:bg-none",
-        "before:checked:ml-[14px] before:checked:bg-white",
+        "before:checked:ml-[14px] before:checked:bg-white after:checked:bg-primary/50",
 
         props.className,
       ])}

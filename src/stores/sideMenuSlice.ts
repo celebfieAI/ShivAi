@@ -25,7 +25,6 @@ const initialState: SideMenuState = {
     },
     {
         icon: "SigmaSquare",
-        pathname: "/",
         title: "Sivai Matrix",
         subMenu: [
           {
